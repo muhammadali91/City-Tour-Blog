@@ -1,0 +1,185 @@
+{% extends "places/basevisitor.html" %}
+
+{% block body %}
+
+
+     <!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'places/homestyle.css'%}"/> -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+
+
+
+
+<!--  Image with Logo Text -->
+<div class="w3-display-container w3-opacity-min">
+    <img src="{% static 'places/images/33.jpg' %}" style="height:500px;width:100%">
+ 
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">SMART <span class="w3-hide-small">TOURIST</span> GUIDE</span>
+  </div>
+</div>
+
+
+<div class="w3-row w3-center w3-black w3-padding-16">
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">15+</span><br>
+    Cities
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">10+</span><br>
+    Historical Places
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">15+</span><br>
+    Amusement Parks
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">150+</span><br>
+    Tourist Attractions
+  </div>
+</div>
+
+
+<!-- About Section -->
+<div class="w3-content w3-container w3-padding-64" id="about">
+  <h3 class="w3-center">ABOUT WEBSITE</h3>
+  <p class="w3-center"><em>The world is a book and those who do not travel read only one page</em></p>
+  <p>
+This site is for tourists and travelers who like to travel to amazing places. It contains all the information of renowned cities and their best tourist places. The main purpose of this website is to make it easier for travelers to discover more and more. It's easy to access this website. All you have to do is register yourself so that you can enjoy such a great application without registration you can not access our website. Once you are registered, go to the registration form and enter your username and password and enjoy.
+Please give us feedback if you find incorrect information or missing places that we would like to work on</p>
+  
+
+ 
+</div>
+
+
+<!-- Famous Places Section -->
+<div class="w3-content w3-container w3-padding-64" id="portfolio">
+  <h3 class="w3-center">FAMOUS PLACES</h3>
+  <p class="w3-center"><em>Here are some of my Famous places.<br> Click on the images to make them bigger</em></p><br>
+
+  <!-- Responsive Grid-->
+  <div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      <img src="{% static 'places/images/4.jpg' %}"style="height:200px;width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Reichstag building">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'places/images/5.jpg' %}" style="height:200px;width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Berlin Wall">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'places/images/6.jpg' %}" style="height:200px;width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Hohenschwangau Castle">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'places/images/7.jpg' %}" style="height:200px;width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Museum Island">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <img src="{% static 'places/images/8.jpg' %}" style="height:200px;width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Eurosat">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'places/images/9.jpg' %}" style="height:200px;width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Titisee">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'places/images/10.jpg' %}" style="height:200px;width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="gendarmenmarkt">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'places/images/11.jpg' %}" style="height:200px;width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Speicherstadt">
+  </div>
+</div>
+
+<!-- for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+</div>
+<!-- Add Google Maps-->
+<div id="googleMap" style="height:100px;" class="w3-grayscale-max"></div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5132302.514931798!2d5.96714651622862!3d51.08987671311973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a721ec2b1be6b%3A0x75e85d6b8e91e55b!2sGermany!5e0!3m2!1sen!2sde!4v1529962649362" height='750px' width='100%'  frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+
+<!-- Feedback Section -->
+<div class="w3-content w3-container w3-padding-64" id="contact">
+  <h3 class="w3-center">FEEDBACK?</h3>
+  
+    <div class="w3-col m8 w3-panel">
+      <div class="w3-large w3-margin-bottom">
+         <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Germany, DE<br>
+        <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +00 123456789<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: ahson@programming.com<br>
+      </div>
+      <p>or leave me a note:</p>
+      <form action="#" target="_blank">
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+          </div>
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+          </div>
+        </div>
+        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+        <button class="w3-button w3-black w3-right w3-section" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="#" title="W3.CSS" target="_blank" class="w3-hover-text-green">Ahson Khan</a></p>
+</footer>
+ 
+
+<script>
+
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>
+
+{% endblock %}

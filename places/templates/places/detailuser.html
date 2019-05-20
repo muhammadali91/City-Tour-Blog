@@ -1,0 +1,115 @@
+{% extends 'places/base.html' %}
+{% block city_active %}active{% endblock %} <!-- highlight cities -->
+
+
+ <!-- including trip plan button in base -->
+{% block content %}
+
+					<a href="{% url 'places:Plantrip-add' %}">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Create Trip plan
+					</a>
+				
+{% endblock %}
+
+ <!-- activating button to redirect user home -->
+{% block page %}
+
+
+{% url 'places:home' %}
+
+{% endblock %}
+
+<!-- activating button to redirect cities informations -->
+{% block city %}
+	{% url 'places:indexuser' %}
+	
+{% endblock %}
+
+<!-- activating button to redirect trip plan informations -->
+{% block plan %}
+	{% url 'places:plan' %}
+	
+{% endblock %}
+
+<!-- displays user name -->
+{% block user %}
+
+	UserName: {{ user.username }}
+	
+{% endblock %}
+
+<!-- main body -->
+{% block body %}
+
+
+
+	<div class="container-fluid places-container">
+
+    <div class="row">
+
+        <!-- Left side info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'places:detailuser' city.id %}">
+                        {% if city.logo %}
+                            <img src="{{ city.logo.url }}" class="img-responsive" style="height:250px;width:100%">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1>{{ city.title }} <small>{{ city.state }}</small></h1><!-- getting city informations from database -->
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side info -->
+        <div class="col-sm-8 col-md-9">
+
+          
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All Places</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- getting places from database -->
+		{% for place in city.place_set.all %}
+                            <tr>
+                                <td>{{ place.place_title }}</td>
+                                <td>{{ place.place_type }}</td>
+								<td>{{ place.description }}</td>
+                                
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div
+		
+{% endblock %}

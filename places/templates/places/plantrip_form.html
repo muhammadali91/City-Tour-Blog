@@ -1,0 +1,50 @@
+{% extends 'places/base.html' %}
+
+{% block page %}
+
+{% url 'places:home' %}
+
+{% endblock %}
+
+{% block plan %}
+	{% url 'places:plan' %}
+	
+{% endblock %}
+
+{% block city %}
+	{% url 'places:indexuser' %}
+	
+{% endblock %}
+
+{% block place_active %}active{% endblock %}
+
+
+	
+	
+{% block body %}
+<div class="container-fluid">
+	
+	<div class="row">
+	
+		<div class="col-md-6 col-md-offset-4">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					
+					<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						{% include 'places/form-template.html' %}
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							<p>date format: yyyy.mm.dd </p>
+								<button type="submit" class="btn btn-success">Submit</button>
+							</div>
+						</div>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+	
+{% endblock %}

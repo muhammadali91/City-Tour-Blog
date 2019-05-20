@@ -1,0 +1,81 @@
+{% extends 'places/base.html' %}
+{% block city_active %}active{% endblock %}<!-- highlited cities button on nav bar -->
+
+ <!--activating button to redirect user home -->
+{% block page %}
+
+{% url 'places:home' %}
+
+{% endblock %}
+
+<!-- activating button to redirect cities information/add/delete -->
+{% block city %}
+	{% url 'places:indexuser' %}
+	
+{% endblock %}
+
+
+<!-- activating button to redirect trip plan informations -->
+{% block plan %}
+	{% url 'places:plan' %}
+	
+{% endblock %}
+
+<!-- displays user name -->
+{% block user %}
+	UserName: {{ user.username }}
+	
+{% endblock %}
+
+<!-- Create Trip Plan -->
+{% block content %}
+
+					<a href="{% url 'places:Plantrip-add' %}">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Create Trip plan
+					</a>
+				
+{% endblock %}
+
+
+<!-- main body -->
+{% block body %}
+
+
+
+	<div class="object_list-container container-fluid">
+
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Cities</h3>
+        </div>
+        
+	
+		{% for city in object_list %}
+		
+		<div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+                        <a href="{% url 'places:detailuser' city.id %}">
+                            <img src="{{ city.logo.url }}" class="img-responsive"  style="height:200px;width:100%">
+                        </a>
+                        <div class="caption">
+                            <h2>{{ city.title }}</h2>
+                            <h4>{{ city.state }}</h4>
+
+                            <!-- View Places -->
+                            <a href="{% url 'places:detailuser' city.id %}" class="btn btn-primary btn-sm" role="button">View Places</a>
+
+                          
+                        
+
+                       
+
+                        </div>
+                    </div>
+                </div>
+				   {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+		{% endfor %}
+	
+    </div>
+	
+{% endblock %}

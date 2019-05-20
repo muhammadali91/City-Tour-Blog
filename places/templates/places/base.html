@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF=8">
+	<!-- title-->
+	<title>{% block title %}Smart Tourist Guide{% endblock %}</title>
+	
+	{% load staticfiles %}
+	<link rel="shortcut icon" href="{% static 'places/images/images.png'%}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="{% static 'places/style.css'%}"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+    {% if user.is_authenticated %}
+       
+      <!-- Header -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<!-- redirect to home page when cliking logo-->
+				<a class="navbar-brand" href="{% block page %}{% endblock %}">Smart Tourist Guide</a>
+			</div>
+		<!-- redirect to page cities page-->
+		<div class="collapse navbar-collapse" id="topNavBar">
+			
+			<ul class="nav navbar-nav">
+				<li class="{% block city_active %}{% endblock %}"><!-- when click cities the button will be highlighted-->
+					<a href="{% block city %}{% endblock %}">
+						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; Cities
+					</a>
+				</li>
+				<!-- redirect to page tour plan page-->
+				<li class="{% block place_active %}{% endblock %}"><!-- when click plan the button will be highlighted-->
+					<a href="{% block plan %}{% endblock %}">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp; Plan
+					</a>
+				</li>
+			</ul>
+			
+			<!-- search option ..but it's not perfectly used till now it's just redirect to cities page-->
+			 <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'places:indexuser' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+			
+			<!-- displays registered user name-->
+		<ul class="nav navbar-nav navbar-center">
+				<li>
+				 <h4 style="color:White;">{% block user %}{% endblock %} </h4>
+				</li>
+								</ul>
+								<!-- displays current time-->
+	<ul class="nav navbar-nav navbar-right">
+	
+				<li class="active" style="color:White;">
+							<head>
+							<script>
+							function startTime() {
+								var today = new Date();
+								var h = today.getHours();
+								var m = today.getMinutes();
+								var s = today.getSeconds();
+								m = checkTime(m);
+								s = checkTime(s);
+								document.getElementById('txt').innerHTML =
+								h + ":" + m + ":" + s;
+								var t = setTimeout(startTime, 500);
+							}
+							function checkTime(i) {
+								if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+								return i;
+							}
+							</script>
+							</head>
+
+							<body onload="startTime()">
+
+							<div id="txt"></div>
+
+							</body>
+						</li>
+						</ul>
+
+ 
+			<ul class="nav navbar-nav navbar-right">
+				<!-- create plantrip button-->
+				<li class="{% block create_active %}{% endblock %}">
+					{% block content %}
+					{% endblock %}
+				</li>
+				
+				<li class="">
+					<a href="{% url 'places:logout_user' %}">
+						<span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+			<!-- Header navbar close -->
+			
+			<!-- main body -->
+{% block body %}
+{% endblock %}
+				<!-- for non authenticated users -->
+			   {% else %}
+        <a href="#" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+		  <h1><a href="/">ERROR 404 : Kinldy Login To Access the Website</a></h1>
+    {% endif %}
+  
+
+</body>
+</html>

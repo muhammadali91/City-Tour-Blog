@@ -1,0 +1,126 @@
+{% extends 'places/base.html' %}
+{% block place_active %}active{% endblock %}<!-- highlight plan -->
+
+ <!-- activating button to redirect user home -->
+{% block page %}
+
+{% url 'places:home' %}
+
+{% endblock %}
+
+<!-- activating button to redirect trip plan informations -->
+{% block plan %}
+	{% url 'places:plan' %}
+	
+{% endblock %}
+
+<!-- activating button to redirect cities informations -->
+{% block city %}
+	{% url 'places:indexuser' %}
+	
+{% endblock %}
+
+
+<!-- Add More Place in plan -->
+{% block content %}
+
+					<a href="{% url 'places:Plantrip-add' %}">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add More Place
+					</a>
+				
+{% endblock %}
+
+<!-- displays user name -->
+{% block user %}
+	UserName: {{ user.username }}
+	
+{% endblock %}
+<!-- main body-->
+{% block body %}
+
+
+
+
+<div class="container-fluid places-container">
+
+    <div class="row">
+
+        <!-- Left side Info -->
+		 <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  
+                    <h1 style="font-family:Verdana.;">PLACES TO VISIT</h1>
+                    
+                </div>
+            </div>
+			 <div class="panel panel-default">
+                <div class="panel-body">
+                  
+                    <h2  style="color:LightSeaGreen;font-family:Times New Roman;">TRAVEL</h2>
+                    
+                </div>
+            </div>
+				 <div class="panel panel-default">
+                <div class="panel-body">
+                  
+                    <h2 style="color:OrangeRed  ;font-family:Times New Roman;">LOVE</h2>
+                    
+                </div>
+            </div>
+			<div class="panel panel-default">
+                <div class="panel-body">
+                  
+                    <h2 style="color:Orchid ;font-family:Times New Roman;">EXPLORE</h2>
+                    
+                </div>
+            </div>
+        </div>
+		 <!-- Right side Info -->
+        <div class="col-sm-8 col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+<table class="table">
+                        <thead>
+                        <tr>
+                            <th>Place Name</th>
+							<th>Date</th>
+							
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+					
+                       {% if object_list %}
+					   
+		{% for plantrip in object_list %}
+                            <tr>
+                                <td>{{ plantrip.placename }}</td>
+                                <td>{{ plantrip.date }}</td>
+							
+							
+                                
+                            </tr>
+                        {% endfor %}
+						
+						{% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="{% url 'places:Plantrip-add' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add Places
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+		
+                        </tbody>
+                    </table>
+
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+{% endblock %}

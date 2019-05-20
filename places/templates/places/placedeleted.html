@@ -1,0 +1,58 @@
+{% extends 'places/base.html' %}
+
+
+
+<!-- activating button to redirect admin home -->
+{% block page %}
+
+{% url 'places:index' %}
+
+{% endblock %}
+
+<!-- activating button to redirect cities informations/add/delete -->
+{% block city %}
+	{% url 'places:index' %}
+	{% endblock %}
+	
+	<!-- not for admin -->
+{% block plan %}
+	#
+	
+{% endblock %}
+
+<!-- Add Cities -->
+{% block content %}
+
+					<a href="{% url 'places:city-add' %}">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Cities
+					</a>
+				
+{% endblock %}
+
+
+<!-- main body -->
+{% block body %}
+
+	<div class="object_list-container container-fluid">
+
+    
+    <div class="row">
+       <div class="col-md-4 col-md-offset-4">
+            <h1>Place Deleted</h1>
+        
+
+<h3>If You Want To Add Place Click Below</h3>
+<a href="{% url 'places:place-add' %}">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add placce
+					</a>	
+					<h3>Or Click Below To Go Home</h3>
+<a href="{% url 'places:index' %}">
+						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp; Home
+					</a>	
+					
+					
+					</div>
+					</div>
+					</div>
+{% endblock %}
+
